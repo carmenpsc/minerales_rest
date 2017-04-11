@@ -1,0 +1,26 @@
+{
+  "name": "mineral_rest",
+  "version": "1.0.0",
+  "description": "API REST para la gestion de minerales dentro del proyecto",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmenpsc/minerales_rest.git"
+  },
+  "author": "Carmen Peñalver San Cristóbal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carmenpsc/minerales_rest/issues"
+  },
+  "homepage": "https://github.com/carmenpsc/minerales_rest#readme"
+}
