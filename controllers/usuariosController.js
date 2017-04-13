@@ -20,12 +20,23 @@ exports.findById = function(req, res) {
       });
 };
 
+//POST - Login usuario
+exports.findByCorreoElectronico = function(req, res){
+  var correoElectronicoUsuario = req.body.correoElectronico;
+  usuarios.findOne({'correoElectronico': correoElectronicoUsuario}, function(err, usuario){
+    if(err) return res.send(500, err.message);
+
+    console.log('GET /login/' + req.params.id);
+    res.status(200).jsonp(usuario);
+  });
+};
+
 //POST - Insert a new usuario in the DB
 exports.addUsuario = function(req, res) {
     console.log('POST');
     console.log(req.body);
 
-    var usuario = new minerales({
+    var usuario = new usuarios({
         nombre:             req.body.nombre,
         apellidos:          req.body.apellidos,
         correoElectronico:  req.body.correoElectronico,

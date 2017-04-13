@@ -48,4 +48,7 @@ router.route('/usuario/:id')
   .put(usuariosController.updateUsuario)
   .delete(usuariosController.deleteUsuario);
 
+router.route('/login')
+  .post(usuariosController.findByCorreoElectronico);
+
 app.use('/api', router);
