@@ -6,14 +6,20 @@ var express  = require("express"),
     methodOverride = require("method-override");
     mongoose = require('mongoose');
 
+//modelos
 require('./models/mineral')
+require('./models/usuario')
+
+//controladores
 var mineralesController = require('./controllers/mineralesController');
-var minerales = express.Router();
+var usuariosController = require('./controllers/usuariosController');
+
+var router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(minerales);
+app.use(router);
 
 mongoose.connect('mongodb://localhost/minerales', function(err, res) {
   if(err) {
@@ -24,13 +30,22 @@ mongoose.connect('mongodb://localhost/minerales', function(err, res) {
   });
 });
 
-minerales.route('/minerales')
+router.route('/minerales')
   .get(mineralesController.findAllMinerales)
   .post(mineralesController.addMineral);
 
-minerales.route('/mineral/:id')
+router.route('/mineral/:id')
   .get(mineralesController.findById)
   .put(mineralesController.updateMineral)
   .delete(mineralesController.deleteMineral);
 
-app.use('/api', minerales);
+router.route('/usuarios')
+  .get(usuariosController.findAllUsuarios)
+  .post(usuariosController.addUsuario);
+
+router.route('/usuario/:id')
+  .get(usuariosController.findById)
+  .put(usuariosController.updateUsuario)
+  .delete(usuariosController.deleteUsuario);
+
+app.use('/api', router);

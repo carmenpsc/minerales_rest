@@ -66,7 +66,7 @@ exports.updateMineral = function(req, res) {
     });
 };
 
-//DELETE - Delete a TVShow with specified ID
+//DELETE - Delete a mineral with specified ID
 exports.deleteMineral = function(req, res) {
     minerales.findById(req.params.id, function(err, mineral) {
         mineral.remove(function(err) {
