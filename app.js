@@ -15,6 +15,7 @@ var mineralesController = require('./controllers/mineralesController');
 var usuariosController = require('./controllers/usuariosController');
 
 var router = express.Router();
+var port = process.env.HTTP_PORT || process.env.PORT || 3001
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
