@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(router);
 
-mongoose.connect('mongodb://localhost/minerales', function(err, res) {
+mongoose.connect('mongodb://carrpsc94:mineralPSC@ds161580.mlab.com:61580/minerales', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   }
