@@ -1,3 +1,4 @@
+//Variables de la aplicacion
 var mongoose = require('mongoose');
 var usuarios  = mongoose.model('usuarios');
 

@@ -40,9 +40,9 @@ router.route('/mineral/:id')
   .put(mineralesController.updateMineral)
   .delete(mineralesController.deleteMineral);
 
-router.route('/usuarios')
+/*router.route('/usuarios')
   .get(usuariosController.findAllUsuarios)
-  .post(usuariosController.addUsuario);
+  .post(usuariosController.addUsuario);*/
 
 router.route('/usuario/:id')
   .get(usuariosController.findById)
