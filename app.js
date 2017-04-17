@@ -50,6 +50,9 @@ router.route('/usuario/:id')
   .delete(usuariosController.deleteUsuario);
 
 router.route('/login')
-  .post(usuariosController.findByCorreoElectronico);
+  .post(usuariosController.findByCredenciales);
+
+router.route('/registro')
+.post(usuariosController.findByCorreoElectronico);
 
 app.use('/api', router);

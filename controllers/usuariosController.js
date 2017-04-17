@@ -21,7 +21,7 @@ exports.findById = function(req, res) {
 };
 
 //POST - Login usuario
-exports.findByCorreoElectronico = function(req, res){
+exports.findByCredenciales = function(req, res){
     console.log('POST /login');
     console.log(req.body);
   var correoElectronicoUsuario = req.body.correoElectronico;
@@ -30,6 +30,17 @@ exports.findByCorreoElectronico = function(req, res){
     if(err) return res.send(500, err.message);
     res.status(200).jsonp(usuario);
   });
+};
+
+//POST - Login usuario
+exports.findByCorreoElectronico = function(req, res){
+    console.log('POST /login');
+    console.log(req.body);
+    var correoElectronicoUsuario = req.body.correoElectronico;
+    usuarios.findOne({'correoElectronico': correoElectronicoUsuario}, function(err, usuario){
+        if(err) return res.send(500, err.message);
+        res.status(200).jsonp(usuario);
+    });
 };
 
 //POST - Insert a new usuario in the DB
