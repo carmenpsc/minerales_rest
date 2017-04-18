@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(router);
 
+//Conexión con la base de datos mongodb subida en el servidor mlab
 mongoose.connect('mongodb://carrpsc94:mineralPSC@ds161580.mlab.com:61580/minerales', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
@@ -31,6 +32,7 @@ mongoose.connect('mongodb://carrpsc94:mineralPSC@ds161580.mlab.com:61580/mineral
   });
 });
 
+//URLs y sus corrrespondientes acciones
 router.route('/minerales')
   .get(mineralesController.findAllMinerales)
   .post(mineralesController.addMineral);

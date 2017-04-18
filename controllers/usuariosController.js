@@ -2,16 +2,16 @@
 var mongoose = require('mongoose');
 var usuarios  = mongoose.model('usuarios');
 
-//GET - Return all usuarios in the DB
+//GET - Devuelve todos los usuarios administradores persistentes en la base de datos
 exports.findAllUsuarios = function(req, res) {
-    usuarios.find(function(err, tvshows) {
+    usuarios.find(function(err, usuarios) {
       if(err) res.send(500, err.message);
       console.log('GET /usuarios')
-          res.status(200).jsonp(tvshows);
+          res.status(200).jsonp(usuarios);
       });
 };
 
-//GET - Return a usuario with specified ID
+//GET - Devuelve el usuario administrador cuyo ID es igual que el parametró de la función
 exports.findById = function(req, res) {
     usuarios.findById(req.params.id, function(err, usuario) {
       if(err) return res.send(500, err.message);
@@ -21,7 +21,7 @@ exports.findById = function(req, res) {
       });
 };
 
-//POST - Login usuario
+//POST - Comprueba si un usuario administrador ya está registrado en el sistema y le deja acceder a él. (Login)
 exports.findByCredenciales = function(req, res){
     console.log('POST /login');
     console.log(req.body);
@@ -33,7 +33,7 @@ exports.findByCredenciales = function(req, res){
   });
 };
 
-//POST - Login usuario
+//POST - Comprueba que el correo electróncio que se introduce en el sistema no exista ya.
 exports.findByCorreoElectronico = function(req, res){
     console.log('POST /login');
     console.log(req.body);
@@ -44,7 +44,7 @@ exports.findByCorreoElectronico = function(req, res){
     });
 };
 
-//POST - Insert a new usuario in the DB
+//POST - Añade un nuevo usuario adminitrador a la base de datos
 exports.addUsuario = function(req, res) {
     console.log('POST');
     console.log(req.body);
@@ -63,7 +63,7 @@ exports.addUsuario = function(req, res) {
     });
 };
 
-//PUT - Update a register already exists
+//PUT - Permite modificar los datos de un usuario administrador
 exports.updateUsuario = function(req, res) {
     usuarios.findById(req.params.id, function(err, usuario) {
         usuario.nombre = req.body.nombre;
@@ -79,7 +79,7 @@ exports.updateUsuario = function(req, res) {
     });
 };
 
-//DELETE - Delete a usuario with specified ID
+//DELETE - Elimina todos los datos de un usuario administrador
 exports.deleteUsuario = function(req, res) {
     usuarios.findById(req.params.id, function(err, usuario) {
         usuario.remove(function(err) {

@@ -1,13 +1,12 @@
-//File: controllers/tvshows.js
 var mongoose = require('mongoose');
 var minerales  = mongoose.model('minerales');
 
 //GET - Return all minerales in the DB
 exports.findAllMinerales = function(req, res) {
-    minerales.find(function(err, tvshows) {
+    minerales.find(function(err, minerales) {
       if(err) res.send(500, err.message);
       console.log('GET /minerales')
-          res.status(200).jsonp(tvshows);
+          res.status(200).jsonp(minerales);
       });
 };
 
