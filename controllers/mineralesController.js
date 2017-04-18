@@ -12,11 +12,11 @@ exports.findAllMinerales = function(req, res) {
 
 //GET - Return a mineral with specified ID
 exports.findById = function(req, res) {
-    minerales.findById(req.params.id, function(err, tvshow) {
+    minerales.findById(req.params.id, function(err, mineral) {
       if(err) return res.send(500, err.message);
 
       console.log('GET /mineral/' + req.params.id);
-          res.status(200).jsonp(tvshow);
+          res.status(200).jsonp(mineral);
       });
 };
 
