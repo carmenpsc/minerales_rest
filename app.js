@@ -33,14 +33,16 @@ mongoose.connect('mongodb://carrpsc94:mineralPSC@ds161580.mlab.com:61580/mineral
 });
 
 //URLs y sus corrrespondientes acciones
-router.route('/minerales')
-  .get(mineralesController.findAllMinerales)
-  .post(mineralesController.addMineral);
+router.route('/minerales/:id')
+  .get(mineralesController.findAllMinerales);
 
 router.route('/mineral/:id')
+  .post(mineralesController.addMineral)
   .get(mineralesController.findById)
-  .put(mineralesController.updateMineral)
-  .delete(mineralesController.deleteMineral);
+  .put(mineralesController.updateMineral);
+
+router.route('/mineral/:id/:mineral')
+  .get(mineralesController.deleteMineral);
 
 router.route('/usuarios')
   .get(usuariosController.findAllUsuarios)

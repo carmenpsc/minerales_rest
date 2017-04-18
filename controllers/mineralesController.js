@@ -1,47 +1,39 @@
 var mongoose = require('mongoose');
-var minerales  = mongoose.model('minerales');
+var usuarios = mongoose.model('usuarios');
+var minerales = mongoose.model('minerales');
 
 //GET - Return all minerales in the DB
 exports.findAllMinerales = function(req, res) {
-    minerales.find(function(err, minerales) {
-      if(err) res.send(500, err.message);
-      console.log('GET /minerales')
-          res.status(200).jsonp(minerales);
-      });
+    usuarios.find({'_id': req.params.id}, 'minerales', function(err, usuarios) {
+        if(err) res.send(500, err.message);
+        console.log('GET /minerales')
+        res.status(200).jsonp(usuarios);
+    });
 };
 
 //GET - Return a mineral with specified ID
 exports.findById = function(req, res) {
     minerales.findById(req.params.id, function(err, mineral) {
-      if(err) return res.send(500, err.message);
+        if(err) return res.send(500, err.message);
 
-      console.log('GET /mineral/' + req.params.id);
-          res.status(200).jsonp(mineral);
-      });
+        console.log('GET /mineral/' + req.params.id);
+        res.status(200).jsonp(mineral);
+    });
 };
 
 //POST - Insert a new mineral in the DB
 exports.addMineral = function(req, res) {
-    console.log('POST');
+    console.log('POST /mineral');
     console.log(req.body);
-
-    var mineral = new minerales({
-        nombre:         req.body.nombre,
-        habito:         req.body.habito,
-        clasificacion:  req.body.clasificacion,
-        densidad:       req.body.densidad,
-        dureza:         req.body.dureza,
-        tenacidad:      req.body.tenacidad,
-        rotura:         req.body.rotura,
-        brillo:         req.body.brillo,
-        color:          req.body.color,
-        colorRaya:      req.body.colorRaya
-    });
-
-    mineral.save(function(err, mineral) {
-        if(err) return res.status(500).send( err.message);
-    res.status(200).jsonp(mineral);
-    });
+    usuarios.findByIdAndUpdate(
+        req.params.id,
+        {$push: {'minerales':req.body}},
+        {safe: true, upsert: true, strict: false},
+        function(err, usuario) {
+            if(err) return res.status(500).send( err.message);
+            res.status(200).jsonp(usuario);
+        }
+    );
 };
 
 //PUT - Update a register already exists
@@ -60,17 +52,20 @@ exports.updateMineral = function(req, res) {
 
         mineral.save(function(err) {
             if(err) return res.status(500).send(err.message);
-        res.status(200).jsonp(mineral);
+            res.status(200).jsonp(mineral);
         });
     });
 };
 
 //DELETE - Delete a mineral with specified ID
 exports.deleteMineral = function(req, res) {
-    minerales.findById(req.params.id, function(err, mineral) {
-        mineral.remove(function(err) {
-            if(err) return res.status(500).send(err.message);
-            res.status(200).send();
-        })
-    });
+    usuarios.findByIdAndUpdate(
+        req.params.id,
+        {$pull: {'minerales': { nombre: req.params.mineral }}},
+        {safe: true, upsert: true, strict: false},
+        function(err, usuario) {
+            if(err) return res.status(500).send( err.message);
+            res.status(200).jsonp(usuario);
+        }
+    );
 };
