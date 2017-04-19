@@ -61,7 +61,7 @@ exports.updateMineral = function(req, res) {
 exports.deleteMineral = function(req, res) {
     usuarios.findByIdAndUpdate(
         req.params.id,
-        {$pull: {'minerales': { codigo: req.params.codigo }}},
+        {$pull: {'minerales': { codigo: req.params.mineral }}},
         {safe: true, upsert: true, strict: false},
         function(err, mineral) {
             if(err) return res.status(500).send( err.message);
