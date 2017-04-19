@@ -2,16 +2,16 @@ var mongoose = require('mongoose');
 var usuarios = mongoose.model('usuarios');
 var minerales = mongoose.model('minerales');
 
-//GET - Return all minerales in the DB
+//GET - Devuelve todos los mienrales de un usuario adminsitrador
 exports.findAllMinerales = function(req, res) {
-    usuarios.find({'_id': req.params.id}, 'minerales', function(err, usuarios) {
+    usuarios.find({'_id': req.params.id}, 'minerales', function(err, minerales) {
         if(err) res.send(500, err.message);
         console.log('GET /minerales')
-        res.status(200).jsonp(usuarios);
+        res.status(200).jsonp(minerales);
     });
 };
 
-//GET - Return a mineral with specified ID
+//GET - Devuelve el mineral
 exports.findById = function(req, res) {
     minerales.findById(req.params.id, function(err, mineral) {
         if(err) return res.send(500, err.message);
@@ -21,7 +21,7 @@ exports.findById = function(req, res) {
     });
 };
 
-//POST - Insert a new mineral in the DB
+//POST - Añade un nuevo mineral a la lista de minerales de un usuario administrador determinado (ID)
 exports.addMineral = function(req, res) {
     console.log('POST /mineral');
     console.log(req.body);
@@ -57,15 +57,15 @@ exports.updateMineral = function(req, res) {
     });
 };
 
-//DELETE - Delete a mineral with specified ID
+//DELETE - Eliminar el mineral de un usuario administrador determinado (ID)
 exports.deleteMineral = function(req, res) {
     usuarios.findByIdAndUpdate(
         req.params.id,
-        {$pull: {'minerales': { nombre: req.params.mineral }}},
+        {$pull: {'minerales': { codigo: req.params.mineral }}},
         {safe: true, upsert: true, strict: false},
-        function(err, usuario) {
+        function(err, mineral) {
             if(err) return res.status(500).send( err.message);
-            res.status(200).jsonp(usuario);
+            res.status(200).jsonp(mineral);
         }
     );
 };

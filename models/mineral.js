@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var mineralSchema = new Schema({
+  codigo:       {type: String},
   nombre:       { type: String },
   habito:       { type: String, enum:
                   ['Isómetricos o cúbicos', 'Alargados en una dirección', 'Alargados en dos direcciones','Formas intermedias', 'Granulares', 'Lamelares o laminares', 'Oolíticos', 'Concrecciones', 'Dendrítico o arborescente', 'Estalactitas']
