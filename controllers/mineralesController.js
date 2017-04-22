@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var usuarios = mongoose.model('usuarios');
 var minerales = mongoose.model('minerales');
+var id_mineral = 0;
 
 //GET - Devuelve todos los mienrales de un usuario adminsitrador
 exports.findAllMinerales = function(req, res) {
@@ -25,6 +26,7 @@ exports.findById = function(req, res) {
 exports.addMineral = function(req, res) {
     console.log('POST /mineral');
     console.log(req.body);
+    req.body.codigo = id_mineral.toString();
     usuarios.findByIdAndUpdate(
         req.params.id,
         {$push: {'minerales':req.body}},
@@ -32,6 +34,7 @@ exports.addMineral = function(req, res) {
         function(err, usuario) {
             if(err) return res.status(500).send( err.message);
             res.status(200).jsonp(usuario);
+            id_mineral++;
         }
     );
 };
