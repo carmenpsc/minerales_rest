@@ -14,11 +14,11 @@ exports.findAllMinerales = function(req, res) {
 
 //GET - Devuelve el mineral
 exports.findById = function(req, res) {
-    minerales.findById(req.params.id, function(err, mineral) {
-        if(err) return res.send(500, err.message);
-
-        console.log('GET /mineral/' + req.params.id);
-        res.status(200).jsonp(mineral);
+    console.log(req.params);
+    usuarios.findOne({'_id': req.params.id}, {'minerales': {$elemMatch: {codigo: req.params.mineral}}}, function(err, minerales) {
+        if(err) res.send(500, err.message);
+        console.log('GET /minerales')
+        res.status(200).jsonp(minerales);
     });
 };
 
@@ -41,6 +41,7 @@ exports.addMineral = function(req, res) {
 
 //PUT - Update a register already exists
 exports.updateMineral = function(req, res) {
+
     minerales.findById(req.params.id, function(err, mineral) {
         mineral.nombre = req.body.nombre;
         mineral.habito = req.body.habito;

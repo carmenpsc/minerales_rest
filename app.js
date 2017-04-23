@@ -38,11 +38,12 @@ router.route('/minerales/:id')
 
 router.route('/mineral/:id')
   .post(mineralesController.addMineral)
-  .get(mineralesController.findById)
   .put(mineralesController.updateMineral);
 
 router.route('/mineral/:id/:mineral')
-  .delete(mineralesController.deleteMineral);
+  .delete(mineralesController.deleteMineral)
+  .get(mineralesController.findById);
+
 
 router.route('/usuarios')
   .get(usuariosController.findAllUsuarios)
