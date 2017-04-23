@@ -5,23 +5,23 @@ var mineralSchema = new Schema({
   codigo:       {type: String},
   nombre:       { type: String },
   habito:       { type: String, enum:
-                  ['Isómetricos o cúbicos', 'Alargados en una dirección', 'Alargados en dos direcciones','Formas intermedias', 'Granulares', 'Lamelares o laminares', 'Oolíticos', 'Concrecciones', 'Dendrítico o arborescente', 'Estalactitas']
+                  ['Isometricos o cubicos', 'Alargados en una direccion', 'Alargados en dos direcciones','Formas intermedias', 'Granulares', 'Lamelares o laminares', 'Ooliticos', 'Concrecciones', 'Dendritico o arborescente', 'Estalactitas']
                 },
   clasificacion: { type: String, enum:
-                  ['Elementos', 'Sulfuros', 'Sulfosales', 'Óxidos', 'Haluros', 'Carbonatos', 'Fofatos', 'Sulfatos', 'Silicatos']
+                  ['Elementos', 'Sulfuros', 'Sulfosales', 'Oxidos', 'Haluros', 'Carbonatos', 'Fofatos', 'Sulfatos', 'Silicatos']
                 },
   densidad:     { type: Number},
   dureza:       { type: String, enum:
                   ['Talco', 'Yeso', 'Calcita', 'Fluorita', 'Apatito', 'Ortosa', 'Cuarzo', 'Topacio', 'Carindon', 'Diamante']
                 },
   tenacidad:    { type: String, enum:
-                  ['Frágil', 'Maleable', 'Séctil', 'Dúctil', 'Flexible', 'Elástico']
+                  ['Fragil', 'Maleable', 'Sectil', 'Ductil', 'Flexible', 'Elastico']
                 },
   rotura:       { type: String, enum:
-                  ['Fractura', 'Exfoliación']
+                  ['Fractura', 'Exfoliacion']
                 },
   brillo:       { type: String, enum:
-                  ['Metálico', 'Semimetálico', 'No metálico']
+                  ['Metalico', 'Semimetalico', 'No metalico']
                 },
   color:        { type: String},
   colorRaya:    { type: String},

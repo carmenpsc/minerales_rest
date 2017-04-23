@@ -37,13 +37,15 @@ router.route('/minerales/:id')
   .get(mineralesController.findAllMinerales);
 
 router.route('/mineral/:id')
-  .post(mineralesController.addMineral)
-  .put(mineralesController.updateMineral);
+  .post(mineralesController.addMineral);
+
 
 router.route('/mineral/:id/:mineral')
   .delete(mineralesController.deleteMineral)
   .get(mineralesController.findById);
 
+router.route('/modificar/:id/:mineral')
+  .post(mineralesController.updateMineralByCodigo);
 
 router.route('/usuarios')
   .get(usuariosController.findAllUsuarios)
