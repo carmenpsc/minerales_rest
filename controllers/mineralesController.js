@@ -39,6 +39,7 @@ exports.addMineral = function(req, res) {
     );
 };
 
+//POST - Modifica un determinado mineral (ID)
 exports.updateMineralByCodigo = function(req, res) {
     usuarios.findByIdAndUpdate(
         req.params.id,
